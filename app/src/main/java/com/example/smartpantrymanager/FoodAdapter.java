@@ -1,18 +1,26 @@
 package com.example.smartpantrymanager;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder> {
+    private Context context;
     private List<Food> foodList;
 
-    public FoodAdapter(List<Food> foodList) {
+    public FoodAdapter(Context context, List<Food> foodList) {
+        this.context = context;
         this.foodList = foodList;
     }
 
@@ -40,6 +48,18 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         holder.foodQuantity.setText(String.valueOf(food.getQuantity()));
         holder.foodUnit.setText(food.getUnit());
         holder.foodExpiryStatus.setText(food.getExpiryStatus());
+
+        holder.foodContainer.setOnClickListener(v -> {
+            Intent intent = new Intent(context, EditActivity.class);
+
+            intent.putExtra("food_id", food.getId());
+            intent.putExtra("food_name", food.getName());
+            intent.putExtra("food_quantity", food.getQuantity());
+            intent.putExtra("food_unit", food.getUnit());
+            intent.putExtra("food_expiry_date", food.getExpiryDate());
+
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -48,6 +68,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     }
 
     public static class FoodViewHolder extends RecyclerView.ViewHolder {
+        ConstraintLayout foodContainer;
         TextView foodName;
         TextView foodQuantity;
         TextView foodUnit;
@@ -56,6 +77,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         public FoodViewHolder(View itemView) {
             super(itemView);
 
+            foodContainer = itemView.findViewById(R.id.pantryItem);
             foodName = itemView.findViewById(R.id.foodName);
             foodQuantity = itemView.findViewById(R.id.foodQuantity);
             foodUnit = itemView.findViewById(R.id.foodUnit);

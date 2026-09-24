@@ -24,7 +24,7 @@ public class PantryActivity extends AppCompatActivity {
 
         List<Food> foodList = dataSource.getAllFood();
 
-        FoodAdapter foodAdapter = new FoodAdapter(foodList);
+        FoodAdapter foodAdapter = new FoodAdapter(this, foodList);
 
         foodRecycleView.setLayoutManager(new LinearLayoutManager(this));
         foodRecycleView.setAdapter(foodAdapter);

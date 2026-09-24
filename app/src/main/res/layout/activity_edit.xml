@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="My Edit"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,6 +33,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@mipmap/edit"
+            android:contentDescription="edit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -43,37 +44,38 @@
         android:id="@+id/editForm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:padding="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topContainer"
-        app:layout_constraintBottom_toTopOf="@id/navBtns"
         >
 
         <LinearLayout
             android:id="@+id/nameFormGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
             android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="@id/editForm"
+            app:layout_constraintBottom_toTopOf="@+id/qtyUnitFormGroup"
             app:layout_constraintEnd_toEndOf="@id/editForm"
-            app:layout_constraintTop_toTopOf="@id/editForm"
-            >
+            app:layout_constraintStart_toStartOf="@id/editForm"
+            app:layout_constraintTop_toTopOf="@id/editForm">
 
             <TextView
                 android:id="@+id/nameTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name"
-                />
+                android:textSize="17sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/nameEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:labelFor="@id/nameTxt"
                 android:inputType="text"
-                />
+                android:labelFor="@id/nameTxt" />
 
         </LinearLayout>
 
@@ -82,66 +84,68 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@id/editForm"
+            app:layout_constraintBottom_toTopOf="@+id/expDateFormGroup"
             app:layout_constraintEnd_toEndOf="@id/editForm"
-            app:layout_constraintTop_toBottomOf="@id/nameFormGroup"
-            >
+            app:layout_constraintStart_toStartOf="@id/editForm"
+            app:layout_constraintTop_toBottomOf="@id/nameFormGroup">
 
             <LinearLayout
                 android:id="@+id/qtyFormGroup"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical"
-                >
+                android:paddingRight="5dp">
 
                 <TextView
                     android:id="@+id/qtyTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Quantity"
-                    />
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/qtyEdt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:labelFor="@id/qtyTxt"
                     android:inputType="numberDecimal"
-                    />
+                    android:labelFor="@id/qtyTxt" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/unitFormGroup"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical"
-                >
+                android:paddingLeft="5dp">
 
                 <TextView
                     android:id="@+id/unitTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Unit"
-                    />
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/unitEdt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:labelFor="@id/unitTxt"
                     android:inputType="text"
-                    />
+                    android:labelFor="@id/unitTxt" />
 
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/expDateFormGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="@id/editForm"
             app:layout_constraintEnd_toEndOf="@id/editForm"
@@ -153,6 +157,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Expiry Date"
+                android:textStyle="bold"
+                android:textSize="17sp"
                 />
 
             <EditText
