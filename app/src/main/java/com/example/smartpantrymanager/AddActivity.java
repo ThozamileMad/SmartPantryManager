@@ -12,16 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 
-public class EditActivity extends AppCompatActivity {
+public class AddActivity extends AppCompatActivity {
     // Intent
     Intent intent;
-
-    // Selected Item Values
-    int foodId;
-    String foodName;
-    double foodQuantity;
-    String foodUnit;
-    String foodExpiryDate;
 
     // Input Fields
     EditText nameEdt;
@@ -33,8 +26,7 @@ public class EditActivity extends AppCompatActivity {
     TextView errorTxt;
 
     // Buttons
-    Button edtSvBtn;
-    Button delBtn;
+    Button addSvBtn;
 
     // Clickable Navigation Fields
     private LinearLayout ptryNavField;
@@ -43,27 +35,15 @@ public class EditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit);
+        setContentView(R.layout.activity_add);
 
-        intent = getIntent();
+        nameEdt = findViewById(R.id.addNameEdt);
 
-        foodId = intent.getIntExtra("food_id", -1);
-        foodName = intent.getStringExtra("food_name");
-        foodQuantity = intent.getIntExtra("food_quantity", 0);
-        foodUnit = intent.getStringExtra("food_unit");
-        foodExpiryDate = intent.getStringExtra("food_expiry_date");
+        qtyEdt = findViewById(R.id.addQtyEdt);
 
-        nameEdt = findViewById(R.id.edtNameEdt);
-        nameEdt.setText(foodName);
+        unitEdt = findViewById(R.id.addUnitEdt);
 
-        qtyEdt = findViewById(R.id.edtQtyEdt);
-        qtyEdt.setText(String.valueOf(foodQuantity));
-
-        unitEdt = findViewById(R.id.edtUnitEdt);
-        unitEdt.setText(foodUnit);
-
-        expDateEdt = findViewById(R.id.edtExpDateEdt);
-        expDateEdt.setText(foodExpiryDate);
+        expDateEdt = findViewById(R.id.addExpDateEdt);
         expDateEdt.setOnClickListener(v -> {
 
             Calendar calendar = Calendar.getInstance();
@@ -93,43 +73,43 @@ public class EditActivity extends AppCompatActivity {
 
         });
 
-        errorTxt = findViewById(R.id.edtErrTxt);
+        errorTxt = findViewById(R.id.addErrTxt);
 
         FormService fs = new FormService(this);
 
-        edtSvBtn = findViewById(R.id.edtSvBtn);
-        edtSvBtn.setOnClickListener(v -> {
+        addSvBtn = findViewById(R.id.addSvBtn);
+        addSvBtn.setOnClickListener(v -> {
 
             String nameInput = String.valueOf(nameEdt.getText());
             String qtyInput = String.valueOf(qtyEdt.getText());
             String unitInput = String.valueOf(unitEdt.getText());
             String expDateInput = String.valueOf(expDateEdt.getText());
 
-            fs.edit(
+            boolean inserted = fs.insert(
                     errorTxt,
-                    foodId,
                     nameInput,
                     qtyInput,
                     unitInput,
                     expDateInput
             );
 
+            if (inserted) {
+                nameEdt.setText("");
+                qtyEdt.setText("");
+                unitEdt.setText("");
+                expDateEdt.setText("");
+            }
+
         });
 
-        delBtn = findViewById(R.id.edtDelBtn);
-        delBtn.setOnClickListener(v -> {
 
-            fs.delete(foodId);
-
-        });
-
-        ptryNavField = findViewById(R.id.edtPantryNavGroup);
+        ptryNavField = findViewById(R.id.addPantryNavGroup);
         ptryNavField.setOnClickListener(v -> {
             intent = new Intent(this, PantryActivity.class);
             this.startActivity(intent);
         });
 
-        settingsNavField = findViewById(R.id.edtSettingsNavGroup);
+        settingsNavField = findViewById(R.id.addSettingsNavGroup);
         settingsNavField.setOnClickListener(v -> {
             //Intent intent = new Intent(this, SettingsActivity.class);
             //this.startActivity(intent);

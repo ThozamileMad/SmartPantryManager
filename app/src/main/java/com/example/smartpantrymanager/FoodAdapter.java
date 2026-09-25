@@ -77,11 +77,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         public FoodViewHolder(View itemView) {
             super(itemView);
 
-            foodContainer = itemView.findViewById(R.id.pantryItem);
-            foodName = itemView.findViewById(R.id.foodName);
-            foodQuantity = itemView.findViewById(R.id.foodQuantity);
-            foodUnit = itemView.findViewById(R.id.foodUnit);
-            foodExpiryStatus= itemView.findViewById(R.id.foodExpiryStatus);
+            foodContainer = itemView.findViewById(R.id.fdPantryItem);
+            foodName = itemView.findViewById(R.id.fdName);
+            foodQuantity = itemView.findViewById(R.id.fdQuantity);
+            foodUnit = itemView.findViewById(R.id.fdUnit);
+            foodExpiryStatus= itemView.findViewById(R.id.fdExpiryStatus);
         }
     }
 }

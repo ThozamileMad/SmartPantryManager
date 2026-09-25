@@ -2,13 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/ptryMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/topContainer"
+        android:id="@+id/ptryTopContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/border_bottom"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/pageText"
+            android:id="@+id/ptryPageText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="My Pantry"
@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/pageImage"
+            android:id="@+id/ptryPageImage"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@mipmap/pantry"
@@ -40,21 +40,21 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/pantryItems"
+        android:id="@+id/ptryItems"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:paddingTop="20dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        app:layout_constraintTop_toBottomOf="@id/topContainer"
+        app:layout_constraintTop_toBottomOf="@id/ptryTopContainer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/navBtns"
+        app:layout_constraintBottom_toTopOf="@id/ptryNavBtns"
         tools:listitem="@layout/food_item"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/navBtns"
+        android:id="@+id/ptryNavBtns"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
         >
 
         <LinearLayout
-            android:id="@+id/pantryNavGroup"
+            android:id="@+id/ptryNavGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -80,14 +80,14 @@
             android:foreground="?attr/selectableItemBackground">
 
             <ImageView
-                android:id="@+id/pantryBtn"
+                android:id="@+id/ptryBtn"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:background="@mipmap/pantry"
                 android:contentDescription="@string/pantry_btn_text" />
 
             <TextView
-                android:id="@+id/pantryBtnTxt"
+                android:id="@+id/ptryBtnTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/pantry_btn_text"
@@ -96,13 +96,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/recipesNavGroup"
+            android:id="@+id/ptryRecipesNavGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            app:layout_constraintStart_toEndOf="@id/pantryNavGroup"
-            app:layout_constraintEnd_toStartOf="@id/settingsNavGroup"
+            app:layout_constraintStart_toEndOf="@id/ptryNavGroup"
+            app:layout_constraintEnd_toStartOf="@id/ptrySettingsNavGroup"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:clickable="true"
@@ -110,14 +110,14 @@
             android:foreground="?attr/selectableItemBackground">
 
             <ImageView
-                android:id="@+id/recipesBtn"
+                android:id="@+id/ptryRecipesBtn"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:background="@mipmap/blender"
                 android:contentDescription="@string/recipes_btn_text" />
 
             <TextView
-                android:id="@+id/recipesBtnTxt"
+                android:id="@+id/ptryRecipesBtnTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/recipes_btn_text"
@@ -126,7 +126,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/settingsNavGroup"
+            android:id="@+id/ptrySettingsNavGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -139,14 +139,14 @@
             android:foreground="?attr/selectableItemBackground">
 
             <ImageView
-                android:id="@+id/settingsBtn"
+                android:id="@+id/ptrySettingsBtn"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:background="@mipmap/settings"
                 android:contentDescription="@string/settings_btn_text" />
 
             <TextView
-                android:id="@+id/settingsBtnTxt"
+                android:id="@+id/ptrySettingsBtnTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_btn_text"
@@ -157,13 +157,13 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/addFoodBtn"
+        android:id="@+id/ptryAddFoodBtn"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginTop="575dp"
         android:text="+"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/pantryItems"
+        app:layout_constraintBottom_toBottomOf="@+id/ptryItems"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.953"
         app:layout_constraintStart_toStartOf="parent"

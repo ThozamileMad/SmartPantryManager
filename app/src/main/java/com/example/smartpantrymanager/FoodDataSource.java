@@ -1,8 +1,10 @@
 package com.example.smartpantrymanager;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,7 @@ public class FoodDataSource {
         dbHelper = new FoodDbHelper(context);
     }
 
+    // SELECT
     public List<Food> getAllFood() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
@@ -59,5 +62,74 @@ public class FoodDataSource {
         cursor.close();
 
         return foodList;
+    }
+
+    // INSERT
+    public long insertFood(
+            String name,
+            double quantity,
+            String unit,
+            String expiryDate
+    ) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT id FROM food WHERE name = ?",
+                new String[]{name}
+        );
+
+        if (cursor.moveToNext()) {
+            cursor.close();
+            return -1;
+        }
+
+        ContentValues values = new ContentValues();
+
+        values.put("name", name);
+        values.put("quantity", quantity);
+        values.put("unit", unit);
+        values.put("expiry_date", expiryDate);
+
+        return db.insert(
+                "food",
+                null,
+                values
+        );
+    }
+
+    // UPDATE
+    public int updateFood(
+            int id,
+            String name,
+            double quantity,
+            String unit,
+            String expiryDate
+    ) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put("name", name);
+        values.put("quantity", quantity);
+        values.put("unit", unit);
+        values.put("expiry_date", expiryDate);
+
+        return db.update(
+                "food",
+                values,
+                "id = ?",
+                new String[]{String.valueOf(id)}
+        );
+    }
+
+    // DELETE
+    public int deleteFood(int id) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        return db.delete(
+                "food",
+                "id = ?",
+                new String[]{String.valueOf(id)}
+        );
     }
 }
